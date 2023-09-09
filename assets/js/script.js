@@ -4,6 +4,13 @@
 // Current time and day
 // Setting date time format with Day.js
 // Updating currentDayEl to display formatted date
+let currentDayEl = $("#currentDay");
+let currentTimeEl = $("#currentTime");
+let currentDate = dayjs().format("dddd, MMMM D, YYYY");
+let currentTime = dayjs().format("h:mm A");
+currentDayEl.text(currentDate);
+currentTimeEl.text(currentTime);
+
 
 // Color coding of timeblock
 // Getting current time and format
