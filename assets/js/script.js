@@ -1,5 +1,19 @@
-// Array for timeblocks setting it hourly
-// Creating element for timeblock and appending to container
+$(document).ready(function() {
+    // Array for timeblocks setting it hourly
+    // Creating element for timeblock and appending to container    
+    let timeblocks = ["9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM",];
+    let container = $(".container");
+
+    for (let i = 0; i < timeblocks.length; i++) {
+        let timeblock = $("<div>").addClass("row time-block");
+        timeblock.html(
+            `<div class="col-md-1 hour">${timeblocks[i]}</div>`
+            `<textarea class="col-md-10 description"></textarea>`
+            `<button class="col-md-1 saveBtn"><i class="far fa-save"></i></button>`
+        );
+        container.append(timeblock);
+    }
+});
 
 // Current time and day
 // Setting date time format with Day.js
