@@ -7,9 +7,9 @@ $(document).ready(function() {
     for (let i = 0; i < timeblocks.length; i++) {
         let timeblock = $("<div>").addClass("row time-block");
         timeblock.html(
-            `<div class="col-md-1 hour">${timeblocks[i]}</div>`
-            `<textarea class="col-md-10 description"></textarea>`
-            `<button class="col-md-1 saveBtn"><i class="far fa-save"></i></button>`
+            '<div class="col-md-1 hour"' + timeblocks[i] + '</div>' +
+            '<textarea class="col-md-10 description"></textarea>' +
+            '<button class="col-md-1 saveBtn"><i class="far fa-save"></i></button>'
         );
         container.append(timeblock);
     }
