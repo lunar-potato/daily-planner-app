@@ -19,7 +19,7 @@ $(document).ready(function () {
     timeblock.html(
       '<div class="col-md-1 hour"' +
         timeblocks[i] +
-        "</div>" +
+        '</div>' +
         '<textarea class="col-md-10 description"></textarea>' +
         '<button class="col-md-1 saveBtn"><i class="far fa-save"></i></button>'
     );
@@ -53,11 +53,18 @@ $(document).ready(function () {
   });
 
   // Setting event handlers
-  // Adding click event listeners to button
-  // Getting description from textbox area
-  // Saving description to local storage
-  // When refreshed, checking if saved event is in local storage
-  // Load and display description in local storage to textbox area
+  $(".saveBtn").click(function() {
+    let description = $(this).siblings(".description").val();
+    let index = $(this).closest(".time-block").index();
+    localStorage.setItem("event-" + index, description);
+  });
+
+  // Loading event description from local storage
+  $(".description").each(function (index) {
+    let savedPlan = localStorage.getItem("event-" + index);
+    if (savedPlan) {
+      $(this).val(savedPlan);
+    }
+  });
 });
 
-// Loading app
