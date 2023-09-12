@@ -1,4 +1,6 @@
+// Importing custom parse format plugin for Day.js 
 dayjs.extend(window.dayjs_plugin_customParseFormat);
+
 $(document).ready(function () {
   // Array for timeblocks setting it hourly in "h A" format
   let timeblocks = [
@@ -11,15 +13,13 @@ $(document).ready(function () {
     "3 PM",
     "4 PM",
     "5 PM",
-    "6 PM",
-    "7 PM",
-    "8 PM",
-    "9 PM",
-    "10 PM",
-    "11 PM",
   ];
+
+  // Getting container element with class container
   let container = $(".container");
 
+
+  // Looping through timeblocks array to create timeblock elements plus setting layout
   for (let i = 0; i < timeblocks.length; i++) {
     let timeblock = $("<div>").addClass("row time-block");
     timeblock.html(
@@ -29,17 +29,23 @@ $(document).ready(function () {
         '<textarea class="col-md-10 description"></textarea>' +
         '<button class="col-md-1 saveBtn"><i class="far fa-save"></i></button>'
     );
+    // Appending timeblock to container
     container.append(timeblock);
   }
 
   // Current time and day
   let currentDayEl = $("#currentDay");
   let currentTimeEl = $("#currentTime");
+
+  // Getting current time and date using day.js and formatting
   let currentDate = dayjs().format("dddd, MMMM D, YYYY");
   let currentTimeDisplay = dayjs().format("h:mm A");
+
+  // Setting to text content of current day and time
   currentDayEl.text(currentDate);
   currentTimeEl.text(currentTimeDisplay);
 
+  // Getting current time using "h A" format
   let currentTime = dayjs().format("h A");
 
   // Color coding of timeblock
@@ -49,6 +55,7 @@ $(document).ready(function () {
     console.log("Time:", time);
     console.log("Current:", currentTime);
 
+    // Comparing the time with current time to apply appropriate class
     if (dayjs(time, "h A").isBefore(dayjs(currentTime, "h A"))) {
       $(this).addClass("past");
       $(this).removeClass("future present");
@@ -70,6 +77,7 @@ $(document).ready(function () {
     let index = $(this).closest(".time-block").index();
     localStorage.setItem("event-" + index, description);
 
+    // To show notification message for 5 seconds
     $(".notification").addClass("show");
 
     setTimeout(function () {
