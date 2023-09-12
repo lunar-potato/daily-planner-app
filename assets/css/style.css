@@ -2,24 +2,29 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  background-color: #1e1e2e;
 }
 
 textarea {
   background: transparent;
   border: none;
   resize: none;
-  color: #000000;
-  border-left: 1px solid black;
+  color: white;
+  border-left: 1px solid whitesmoke;
   padding: 10px;
 }
 
 header {
   text-align: center;
   background-color: transparent;
-  color: black;
+  color: white;
   border-radius: 0;
-  border-bottom: 10px solid black;
+  border-bottom: 10px solid white;
   padding: 60px;
+}
+
+h1 {
+  color: #f5c2e7;
 }
 
 .description {
@@ -34,27 +39,28 @@ header {
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;
+  border-top: 1px solid black;
 }
 
 .hour {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #313244;
+  color: white;
+  padding-top: 25px;
   border-top: 1px dashed #000000;
 }
 
 .past {
-  background-color: #d3d3d3;
+  background-color: #45475a;
   color: white;
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #f38ba8;
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #a6e3a1;
   color: white;
 }
 
@@ -62,7 +68,7 @@ header {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
+  background-color: #89b4fa;
   color: white;
 }
 
@@ -73,7 +79,7 @@ header {
 
 .notification {
   display: none;
-  color: black;
+  color: white;
 }
 
 .show {
