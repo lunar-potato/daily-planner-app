@@ -1,3 +1,4 @@
+dayjs.extend(window.dayjs_plugin_customParseFormat);
 $(document).ready(function () {
   // Array for timeblocks setting it hourly in "h A" format
   let timeblocks = [
@@ -23,10 +24,10 @@ $(document).ready(function () {
     let timeblock = $("<div>").addClass("row time-block");
     timeblock.html(
       '<div class="col-md-1 hour">' +
-        timeblocks[i] + 
-      '</div>' +
-      '<textarea class="col-md-10 description"></textarea>' +
-      '<button class="col-md-1 saveBtn"><i class="far fa-save"></i></button>'
+        timeblocks[i] +
+        "</div>" +
+        '<textarea class="col-md-10 description"></textarea>' +
+        '<button class="col-md-1 saveBtn"><i class="far fa-save"></i></button>'
     );
     container.append(timeblock);
   }
@@ -44,37 +45,36 @@ $(document).ready(function () {
   // Color coding of timeblock
   $(".time-block").each(function () {
     let time = $(this).find(".hour").text();
-
+    
     console.log("Time:", time);
     console.log("Current:", currentTime);
 
-    if (time < currentTime) {
+    if (dayjs(time, "h A").isBefore(dayjs(currentTime, "h A"))) {
       $(this).addClass("past");
-      $(this).removeClass("future").removeClass("present");
+      $(this).removeClass("future present");
       console.log("past");
     } else if (time === currentTime) {
       $(this).addClass("present");
-      $(this).removeClass("future").removeClass("past");
+      $(this).removeClass("future past");
       console.log("present");
     } else {
       $(this).addClass("future");
-      $(this).removeClass("past").removeClass("present");
+      $(this).removeClass("past present");
       console.log("future");
     }
-
   });
 
   // Setting event handlers
-  $(".saveBtn").click(function() {
+  $(".saveBtn").click(function () {
     let description = $(this).siblings(".description").val();
     let index = $(this).closest(".time-block").index();
     localStorage.setItem("event-" + index, description);
 
     $(".notification").addClass("show");
 
-    setTimeout(function() {
+    setTimeout(function () {
       $(".notification").removeClass("show");
-    }, 5000)
+    }, 5000);
   });
 
   // Loading event description from local storage
@@ -85,4 +85,3 @@ $(document).ready(function () {
     }
   });
 });
-
