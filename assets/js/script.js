@@ -10,6 +10,12 @@ $(document).ready(function () {
     "3 PM",
     "4 PM",
     "5 PM",
+    "6 PM",
+    "7 PM",
+    "8 PM",
+    "9 PM",
+    "10 PM",
+    "11 PM",
   ];
   let container = $(".container");
 
@@ -39,13 +45,23 @@ $(document).ready(function () {
   $(".time-block").each(function () {
     let time = $(this).find(".hour").text();
 
-    if (dayjs(time, "h A").isBefore(dayjs(currentTime, "h A"))) {
+    console.log("Time:", time);
+    console.log("Current:", currentTime);
+
+    if (time < currentTime) {
       $(this).addClass("past");
-    } else if (dayjs(time, "h A").isSame(dayjs(currentTime, "h A"))) {
+      $(this).removeClass("future").removeClass("present");
+      console.log("past");
+    } else if (time === currentTime) {
       $(this).addClass("present");
+      $(this).removeClass("future").removeClass("past");
+      console.log("present");
     } else {
       $(this).addClass("future");
+      $(this).removeClass("past").removeClass("present");
+      console.log("future");
     }
+
   });
 
   // Setting event handlers
@@ -53,6 +69,12 @@ $(document).ready(function () {
     let description = $(this).siblings(".description").val();
     let index = $(this).closest(".time-block").index();
     localStorage.setItem("event-" + index, description);
+
+    $(".notification").addClass("show");
+
+    setTimeout(function() {
+      $(".notification").removeClass("show");
+    }, 5000)
   });
 
   // Loading event description from local storage
